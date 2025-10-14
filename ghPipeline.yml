@@ -1,0 +1,26 @@
+trigger:
+- main
+ 
+pr:
+ autoCancel: true
+ 
+pool:
+  vmImage: ubuntu-latest
+ 
+stages:
+- stage: stage1
+  jobs:
+  - job: Job1
+    steps:
+    - task: PowerShell@2
+      displayName: 'Sleep for 20 seconds'
+      inputs:
+        targetType: 'inline'
+        script: |
+          # PowerShell script to sleep for 20 seconds and print the seconds
+          $totalSeconds = 20
+          for ($i = 1; $i -le $totalSeconds; $i++) {
+              Write-Host "Sleeping for $i seconds..."
+              Start-Sleep -Seconds 1
+          }
+          Write-Host "Sleep completed!1"
